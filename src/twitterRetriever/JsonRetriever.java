@@ -35,9 +35,8 @@ public class JsonRetriever {
 	public JsonRetriever() {
 
 	}
-	
-	public void retrieveTwitterData(String name)
-	{
+
+	public void retrieveTwitterData(String name) {
 		new DownloadTwitterTask().execute(name);
 	}
 
@@ -68,25 +67,27 @@ public class JsonRetriever {
 			}
 		}
 	}
-	// Uses an AsyncTask to download a Twitter user's timeline
-    private class DownloadTwitterTask extends AsyncTask<String, Void, String> {
-    	
-    	@Override
-        protected String doInBackground(String... screenNames) {
-                String result = null;
 
-                if (screenNames.length > 0) {
-                        result = getTwitterStream(screenNames[0]);
-                }
-                return result;
-        }
-    	
-    	 // onPostExecute convert the JSON results into a Twitter object (which is an Array list of tweets
-        @Override
-        protected void onPostExecute(String result) {
-        	try {
+	// Uses an AsyncTask to download a Twitter user's timeline
+	private class DownloadTwitterTask extends AsyncTask<String, Void, String> {
+
+		@Override
+		protected String doInBackground(String... screenNames) {
+			String result = null;
+
+			if (screenNames.length > 0) {
+				result = getTwitterStream(screenNames[0]);
+			}
+			return result;
+		}
+
+		// onPostExecute convert the JSON results into a Twitter object (which
+		// is an Array list of tweets
+		@Override
+		protected void onPostExecute(String result) {
+			try {
 				JSONArray json = new JSONArray(result);
-				//json.getJSONObject(0).getString("text");
+				// json.getJSONObject(0).getString("text");
 				articles = json;
 				isFinished = true;
 			} catch (JSONException e) {
@@ -94,8 +95,8 @@ public class JsonRetriever {
 				e.printStackTrace();
 			}
 			String str = "";
-        }
-    }
+		}
+	}
 
 	public static String GET(String url) {
 		InputStream inputStream = null;

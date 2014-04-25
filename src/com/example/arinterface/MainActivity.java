@@ -43,10 +43,11 @@ public class MainActivity extends Activity implements SampleApplicationControl {
 	boolean mIsDroidDevice = false;
 	WebView webPreview;
 	boolean isScroll = false;
-	//for scrolling
+	// for scrolling
 	private GestureListener mGestureListener;
 	private GestureDetector mGestureDetector;
-	  private Activity mActivity;
+	private Activity mActivity;
+
 	/*
 	 * This is the main class where the main actions are created. onCreate(),
 	 * onResume(), and some other methods to initialize the camera. Some other
@@ -57,7 +58,7 @@ public class MainActivity extends Activity implements SampleApplicationControl {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		vuforiaAppSession = new SampleApplicationSession(this);
-		//spanning circle
+		// spanning circle
 		startLoadingAnimation();
 		webPreview = new WebView(this);
 		webPreview.setVisibility(View.INVISIBLE);
@@ -66,14 +67,14 @@ public class MainActivity extends Activity implements SampleApplicationControl {
 		// add the two images's data to an Arraylist
 		mDatasetStrings.add("StonesAndChips.xml");
 		mDatasetStrings.add("Tarmac.xml");
-		//initialize the AR camera
+		// initialize the AR camera
 		vuforiaAppSession
 				.initAR(this, ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 		mGLView = new MyGLSurfaceView(this, vuforiaAppSession, webPreview);
 		mIsDroidDevice = android.os.Build.MODEL.toLowerCase().startsWith(
 				"droid");
 		mGestureListener = new GestureListener();
-        mGestureDetector = new GestureDetector(mActivity, mGestureListener);
+		mGestureDetector = new GestureDetector(mActivity, mGestureListener);
 	}
 
 	// Called when the activity will start interacting with the user.
@@ -148,7 +149,7 @@ public class MainActivity extends Activity implements SampleApplicationControl {
 			if (isExtendedTrackingActive()) {
 				trackable.startExtendedTracking();
 			}
-			//to see which image it is being recognized 
+			// to see which image it is being recognized
 			String name = "Current Dataset : " + trackable.getName();
 			trackable.setUserData(name);
 			Log.d(LOGTAG, "UserData:Set the following user data "
@@ -274,28 +275,25 @@ public class MainActivity extends Activity implements SampleApplicationControl {
 	boolean isExtendedTrackingActive() {
 		return mExtendedTracking;
 	}
-	
-	public void setScroll(boolean scrolling)
-	{
+
+	public void setScroll(boolean scrolling) {
 		isScroll = scrolling;
 	}
-	
-	private class GestureListener extends GestureDetector.SimpleOnGestureListener
-	{
-		 int DISTANCE_TRESHOLD = 10;
+
+	private class GestureListener extends
+			GestureDetector.SimpleOnGestureListener {
+		int DISTANCE_TRESHOLD = 10;
+
 		@Override
-		 public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY)
-		{
-	           if (Math.abs(distanceX) > DISTANCE_TRESHOLD )
-	            {
-	        	   System.out.println("testing");
-	            }
-	            
-			
+		public boolean onScroll(MotionEvent e1, MotionEvent e2,
+				float distanceX, float distanceY) {
+			if (Math.abs(distanceX) > DISTANCE_TRESHOLD) {
+				System.out.println("testing");
+			}
+
 			return mContAutofocus;
 		}
-		
-	
+
 	}
 
 }
