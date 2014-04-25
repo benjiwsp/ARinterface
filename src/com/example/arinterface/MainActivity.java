@@ -52,7 +52,7 @@ public class MainActivity extends Activity implements SampleApplicationControl {
 	 * onResume(), and some other methods to initialize the camera. Some other
 	 * methods that is required from Vuforia's sample.
 	 */
-	  // test
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

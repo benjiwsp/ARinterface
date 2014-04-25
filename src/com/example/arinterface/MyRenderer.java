@@ -131,11 +131,6 @@ public class MyRenderer implements Renderer {
 			GLES20.glDisable(GLES20.GL_BLEND);
 			mv = modelViewMatrix_Vuforia.getData();
 		//make web
-	/*
-	 * 	old pos and scale
-	 * 	Matrix.scaleM(mv, 0, ratio*400.0f, 400.0f, 1.0f);
-	 *  Matrix.translateM(mv, 0, 0.0f, 0.0f, 5.0f);
-	 */
 			Matrix.translateM(mv, 0, 0.0f, 300.0f, 5.0f);
 			Matrix.scaleM(mv, 0, 300.0f, 50.0f, 1.0f);
 			GLES20.glEnable(GLES20.GL_BLEND);
@@ -376,7 +371,6 @@ public class MyRenderer implements Renderer {
 			       }
 
 			       if(loadingFinished && !redirect){
-			    	   Log.w("adsdas","asdsada");
 			    	   preview =  (loadWebBitmap) new loadWebBitmap().execute(view.getScrollY());
 			       } else{
 			          redirect = false; 
